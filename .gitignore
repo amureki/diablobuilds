@@ -1,0 +1,12 @@
+.idea/*
+*.pyc
+*.sqlite
+#*.sqlite
+*.rdb
+.codeintel/*
+*.log
+.directory
+.DS_Store
+project/media/*
+project/media/cache
+node_modules/

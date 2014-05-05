@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{% endblock title %} &mdash; {# PROJECT_NAME #}</title>
+
+    <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
+    <meta name="description" content="{% block description %}{% endblock description %}">
+
+    <meta property="og:title" content="{% block og-title %}{% endblock og-title %}"/>
+    <meta property="og:description" content="{% block og-description %}{% endblock og-description %}"/>
+    <meta property="og:type" content="{% block og-type %}{% endblock og-type %}"/>
+    <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+    <meta property="og:image" content="{% block og-image %}{% endblock og-image %}"/>
+    {% block og-sitename %}<meta property="og:site_name" content="{# PROJECT_NAME #}"/>{% endblock og-sitename %}
+
+    <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
+
+    {% if debug %}
+        {# css #}
+    {% else %}
+        {# mincss #}
+    {% endif %}
+
+    {% block jshead %}{% endblock jshead %}
+</head>
+<body>
+
+{% block content %}{% endblock content %}
+
+{% block metrics %}
+    {% if not debug %}
+        {# include metrics #}
+    {% endif %}
+{% endblock metrics %}
+
+{% if debug %}
+    {# scripts #}
+{% else %}
+    {# minscripts #}
+{% endif %}
+
+{% block jsfooter %}{% endblock jsfooter %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+Django==1.6.4
+South
+psycopg2
+raven
+uWSGI
+gunicorn
+PIL
+-e hg+https://bitbucket.org/izi/django-admin-tools#egg=django_admin_tools
+django-configurations
+django-toolbelt
