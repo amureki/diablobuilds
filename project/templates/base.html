@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}{% endblock title %} &mdash; {# PROJECT_NAME #}</title>
+    <title>{% block title %}{% endblock title %} &mdash; diablobuilds.ru</title>
 
     <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
     <meta name="description" content="{% block description %}{% endblock description %}">
@@ -20,6 +20,9 @@
 
     <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
 
+    <link rel="stylesheet" href="//yandex.st/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
+
     {% if debug %}
         {# css #}
     {% else %}
@@ -30,13 +33,41 @@
 </head>
 <body>
 
-{% block content %}{% endblock content %}
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item active" href="{% url 'index' %}">Главная</a>
+            <a class="blog-nav-item" href="{% url 'builds_list' %}">Билды</a>
+            <a class="blog-nav-item" href="{% url 'build_add' %}">Добавить</a>
+{#            <a class="blog-nav-item" href="#">О проекте</a>#}
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock content %}
+</div>
+
+<div class="blog-footer">
+    <div class="container">
+        <p>Проект в стадии разработки</p>
+        <p>
+            <a href="#">Наверх</a>
+        </p>
+    </div>
+</div>
+
+
 
 {% block metrics %}
     {% if not debug %}
         {# include metrics #}
     {% endif %}
 {% endblock metrics %}
+
+<script src="//yandex.st/jquery/2.1.0/jquery.min.js"></script>
+<script src="//yandex.st/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 {% if debug %}
     {# scripts #}

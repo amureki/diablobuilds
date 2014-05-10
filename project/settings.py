@@ -47,8 +47,13 @@ class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSett
         'south',
         'gunicorn',
         'raven.contrib.django.raven_compat',
-        'django'
+        'markdown_deux',
+        'django',
+
+        'core',
     )
+
+    CURRENT_GAME_VERSION = u'2.0.5'
 
 
 class Development(DevelopmentDatabaseSettings, BaseSettings):

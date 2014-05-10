@@ -22,6 +22,7 @@ urlpatterns += patterns(
 # Project apps
 urlpatterns += patterns(
     '',
+    url(r'^', include(u'core.urls')),
 )
 
 if settings.DEBUG:

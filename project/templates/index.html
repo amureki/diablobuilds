@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Билды для Diablo 3
+{% endblock title %}
+
+{% block content %}
+    <div class="blog-header">
+        <h1 class="blog-title">Билды Diablo 3</h1>
+
+        <p class="lead blog-description">Рейтинг актуальных билдов для Diablo 3</p>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+            {% for build in builds %}
+                <div class="blog-post">
+                    <h2 class="blog-post-title"><a href="{{ build.get_absolute_url }}">{{ build.name }}</a></h2>
+
+                    <p class="blog-post-meta pull-left">{{ build.date_created|date:"DATE_FORMAT" }}, автор:
+                        {% if build.author != 'Гость' %}
+                            <a href="#">{{ build.author }}</a>
+                        {% else %}
+                            {{ build.author }}
+                        {% endif %}
+                    </p>
+
+                    <p class="pull-right">
+                        Класс: <a href="#">{{ build.get_hero_class_display }}</a>
+                        | Рейтинг:
+                        {{ build.rating }}
+                    </p>
+                    <br><br>
+
+                    <p><a href="{{ build.calculator_url }}">{{ build.calculator_url }}</a></p>
+                    <hr>
+                </div>
+            {% endfor %}
+            <ul class="pager">
+                <li><a href="#">Раньше</a></li>
+                <li><a href="#">Дальше</a></li>
+            </ul>
+
+        </div>
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <h4>О проекте</h4>
+
+                <p>Проект создан для составления рейтинга билдов <em>для актуальной на текущий момент версии игры</em> Diablo 3.</p>
+                <p>Текущая версия игры: <strong>{{ CURRENT_GAME_VERSION }}</strong></p>
+            </div>
+{#            <div class="sidebar-module">#}
+{#                <h4>Archives</h4>#}
+{#                <ol class="list-unstyled">#}
+{#                    <li><a href="#">January 2014</a></li>#}
+{#                    <li><a href="#">December 2013</a></li>#}
+{#                    <li><a href="#">November 2013</a></li>#}
+{#                    <li><a href="#">October 2013</a></li>#}
+{#                    <li><a href="#">September 2013</a></li>#}
+{#                    <li><a href="#">August 2013</a></li>#}
+{#                    <li><a href="#">July 2013</a></li>#}
+{#                    <li><a href="#">June 2013</a></li>#}
+{#                    <li><a href="#">May 2013</a></li>#}
+{#                    <li><a href="#">April 2013</a></li>#}
+{#                    <li><a href="#">March 2013</a></li>#}
+{#                    <li><a href="#">February 2013</a></li>#}
+{#                </ol>#}
+{#            </div>#}
+        </div>
+    </div>
+{% endblock content %}

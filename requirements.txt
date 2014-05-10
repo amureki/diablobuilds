@@ -8,3 +8,7 @@ PIL
 -e hg+https://bitbucket.org/izi/django-admin-tools#egg=django_admin_tools
 django-configurations
 django-toolbelt
+
+-e git+https://bitbucket.org/rebranch/rebranch-shortcuts#egg=rebranch_shortcuts-dev
+
+django-markdown-deux
