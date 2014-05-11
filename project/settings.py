@@ -11,8 +11,11 @@ from config.django.middleware import MiddlewareSetings
 from config.django.logging import LoggingSettings
 from config.django.template import TemplateSettings
 
+from config.apps.disqus import DisqusSettings
 
-class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSettings, TemplateSettings, Settings):
+
+class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSettings, TemplateSettings, Settings,
+                   DisqusSettings):
     PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
     sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
@@ -47,6 +50,8 @@ class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSett
         'south',
         'gunicorn',
         'raven.contrib.django.raven_compat',
+        'disqus',
+        'django_markdown',
         'markdown_deux',
         'django',
 

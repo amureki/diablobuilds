@@ -5,11 +5,20 @@
     {{ build.name }}
 {% endblock title %}
 
+{% block nav-builds %}active{% endblock %}
+
 {% block content %}
     <div class="blog-header">
 {#        <h1 class="blog-title">{{ build.name }}</h1>#}
 {##}
-{#        <p class="lead blog-description">Рейтинг актуальных билдов для Diablo 3</p>#}
+{#        <p class="lead blog-description">#}
+{#            {{ build.date_created|date:"DATE_FORMAT" }}, автор:#}
+{#            {% if build.author != 'Гость' %}#}
+{#                <a href="#">{{ build.author }}</a>#}
+{#            {% else %}#}
+{#                {{ build.author }}#}
+{#            {% endif %}#}
+{#        </p>#}
     </div>
 
     <div class="row">
@@ -44,6 +53,14 @@
                 <hr>
 
                 <p>{{ build.description|markdown }}</p>
+                {% if build.get_youtube_embed %}
+                <p>Пример работы билда:</p>
+                {{ build.get_youtube_embed|safe }}
+                {% endif %}
+                <hr>
+                {% load disqus_tags %}
+                {% disqus_dev %}
+                {% disqus_show_comments %}
             </div>
         </div>
 

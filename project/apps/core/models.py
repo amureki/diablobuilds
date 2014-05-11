@@ -1,4 +1,5 @@
 # coding: utf-8
+import re
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -27,7 +28,7 @@ class Build(models.Model):
     profile_url = models.URLField(u'Ссылка на профиль', max_length=255, blank=True, null=True)
     diablo_version = models.CharField(u'Версия игры', max_length=255, default=u'2.0.4')
     description = models.TextField(u'Описание')
-    youtube = models.CharField(u'Ссылка на youtube', max_length=255, blank=True, null=True)
+    youtube = models.URLField(u'Ссылка на youtube', max_length=255, blank=True, null=True)
     rating = models.IntegerField(u'Рейтинг', default=0)
 
     published = models.BooleanField(u'Опубликован', default=False)
@@ -41,6 +42,14 @@ class Build(models.Model):
 
     def get_absolute_url(self):
         return reverse(u'build_detail', args=(self.id,))
+
+    def get_youtube_embed(self):
+        match = re.search(r'^(http|https)\:\/\/www\.youtube\.com\/watch\?v\=(\w*)(\&(.*))?$', self.youtube)
+        if match:
+            url = u'http://www.youtube.com/embed/%s' % (match.group(2))
+            embed = u'<iframe width="560" height="315" src="%s" frameborder="0" allowfullscreen></iframe>' % url
+            return embed
+        return None
 
     def rate_up(self):
         self.rating += 1

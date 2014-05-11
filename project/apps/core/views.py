@@ -64,7 +64,6 @@ class BuildChangeRating(View, JSONResponseMixin):
             )
 
         guest.rated_builds.add(build)
-        # guest.save()
 
         if not build or not action:
             return self.render_to_json_response(status=self.response_status.fail)
@@ -83,8 +82,8 @@ class BuildChangeRating(View, JSONResponseMixin):
 
 
 class BuildAdd(CreateView):
-    template_name = u'create.html'
+    template_name = u'add.html'
     form_class = CreateForm
 
     def get_success_url(self):
-        return reverse(u'builds_list')
+        return reverse(u'index')

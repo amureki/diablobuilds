@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load django_markdown markdown_deux_tags %}
+
+{% block title %}
+    Добавление билда
+{% endblock title %}
+
+{% block nav-build-add %}active{% endblock %}
+
+{% block content %}
+    <div class="blog-header">
+                <h1 class="blog-title">Добавление билда</h1>
+        {##}
+        {#        <p class="lead blog-description">Рейтинг актуальных билдов для Diablo 3</p>#}
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 blog-main">
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group {% if field.errors %}has-error has-feedback{% endif %}">
+                        <label class="control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.name == 'description' %}
+                            <p class="help-block">
+                                Доступна markdown-разметка,
+                                <a href="http://daringfireball.net/projects/markdown/syntax"
+                                   rel="nofollow" target="_blank">подробнее</a>.
+                            </p>
+                        {% endif %}
+                    </div>
+                    {% for error in field.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                {% endfor %}
+                <hr/>
+                <button type="submit" class="btn btn-default">Добавить</button>
+            </form>
+            <br/>
+        </div>
+    </div>
+{% endblock content %}

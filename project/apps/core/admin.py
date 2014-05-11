@@ -1,6 +1,8 @@
 # coding: utf-8
 from django.contrib import admin
 
+from django_markdown.admin import MarkdownModelAdmin
+
 from project.apps.core.models import Build, Guest
 
 
@@ -11,5 +13,6 @@ class GuestAdmin(admin.ModelAdmin):
     list_filter = (u'path',)
 
 
-admin.site.register(Build)
+# admin.site.register(Build)
+admin.site.register(Build, MarkdownModelAdmin)
 admin.site.register(Guest, GuestAdmin)

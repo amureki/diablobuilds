@@ -11,4 +11,6 @@ django-toolbelt
 
 -e git+https://bitbucket.org/rebranch/rebranch-shortcuts#egg=rebranch_shortcuts-dev
 
+django-disqus==0.4.1
+django-markdown
 django-markdown-deux

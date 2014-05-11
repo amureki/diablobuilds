@@ -17,6 +17,7 @@ urlpatterns = patterns(
 # 3rd-party apps
 urlpatterns += patterns(
     '',
+    url('^markdown/', include('django_markdown.urls')),
 )
 
 # Project apps
