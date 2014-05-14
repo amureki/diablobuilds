@@ -27,15 +27,20 @@ class BuildsList(ListView):
         u'wizard': 5,
     }
 
+    SORT_PARAMS = (u'date_created', u'rating')
+
     def __init__(self, **kwargs):
         super(BuildsList, self).__init__(**kwargs)
         self.query = {}
 
     def get_queryset(self):
+        sort = self.request.GET.get(u'sort', None)
         hero_class = self.kwargs.get(u'optional', None)
         if hero_class and hero_class in self.HERO_CLASSES.keys():
             self.query[u'hero_class'] = self.HERO_CLASSES[hero_class]
         builds = self.model.objects.filter(**self.query)
+        if sort and sort in self.SORT_PARAMS:
+            builds = reversed(builds.order_by(sort))
         return builds
 
 
