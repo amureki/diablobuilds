@@ -7,21 +7,27 @@
 {% block nav-builds %}active{% endblock %}
 
 {% block content %}
-    <div class="blog-header">
-        <h1 class="blog-title">Список билдов</h1>
-
-{#        <p class="lead blog-description">Рейтинг актуальных билдов для Diablo 3</p>#}
+    <div class="page-header">
+        <h1>Список билдов
+            <small></small>
+        </h1>
     </div>
 
     <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <div class="row">
+                <p>Сортировка по <a href="#">дате</a> | <a href="#">рейтингу</a></p>
+            </div>
+        </div>
+    </div>
 
-        <div class="col-sm-8 blog-main">
-
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
             {% for build in builds %}
-                <div class="blog-post">
-                    <h2 class="blog-post-title"><a href="{{ build.get_absolute_url }}">{{ build.name }}</a></h2>
+                <div class="row">
+                    <h2><a href="{{ build.get_absolute_url }}">{{ build.name }}</a></h2>
 
-                    <p class="blog-post-meta pull-left">{{ build.date_created|date:"DATE_FORMAT" }}, автор:
+                    <p class="pull-left">{{ build.date_created|date:"DATE_FORMAT" }}, автор:
                         {% if build.author != 'Гость' %}
                             <a href="#">{{ build.author }}</a>
                         {% else %}
@@ -36,43 +42,14 @@
                     </p>
                     <br><br>
 
-                    <p><a href="{{ build.calculator_url }}">{{ build.calculator_url }}</a></p>
+                    <p><a href="{{ build.calculator_url }}">Ссылка на калькулятор</a></p>
                     <hr>
                 </div>
             {% endfor %}
-            <ul class="pager">
-                <li><a href="#">Раньше</a></li>
-                <li><a href="#">Дальше</a></li>
-            </ul>
-
         </div>
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-            <div class="sidebar-module sidebar-module-inset">
-                <h4>О проекте</h4>
-
-                <p>Проект создан для составления рейтинга билдов <em>для актуальной на текущий момент версии игры</em>
-                    Diablo 3.</p>
-
-                <p>Текущая версия игры: <strong>{{ CURRENT_GAME_VERSION }}</strong></p>
-            </div>
-            {#            <div class="sidebar-module">#}
-            {#                <h4>Archives</h4>#}
-            {#                <ol class="list-unstyled">#}
-            {#                    <li><a href="#">January 2014</a></li>#}
-            {#                    <li><a href="#">December 2013</a></li>#}
-            {#                    <li><a href="#">November 2013</a></li>#}
-            {#                    <li><a href="#">October 2013</a></li>#}
-            {#                    <li><a href="#">September 2013</a></li>#}
-            {#                    <li><a href="#">August 2013</a></li>#}
-            {#                    <li><a href="#">July 2013</a></li>#}
-            {#                    <li><a href="#">June 2013</a></li>#}
-            {#                    <li><a href="#">May 2013</a></li>#}
-            {#                    <li><a href="#">April 2013</a></li>#}
-            {#                    <li><a href="#">March 2013</a></li>#}
-            {#                    <li><a href="#">February 2013</a></li>#}
-            {#                </ol>#}
-            {#            </div>#}
+        <div class="col-md-3 col-md-offset-1">
+            {% include 'sidebar.html' %}
         </div>
     </div>
 {% endblock content %}

@@ -1,6 +1,6 @@
 # coding: utf-8
 from django.core.urlresolvers import reverse
-from django.views.generic import ListView, DetailView, CreateView, View
+from django.views.generic import ListView, DetailView, CreateView, View, TemplateView
 from rebranch_shortcuts.django.models import get_object_or_none
 from rebranch_shortcuts.django.views import JSONResponseMixin
 from project.apps.core.forms import CreateForm
@@ -17,6 +17,26 @@ class BuildsList(ListView):
     template_name = u'list.html'
     model = Build
     context_object_name = u'builds'
+
+    HERO_CLASSES = {
+        u'barbarian': 0,
+        u'crusader': 1,
+        u'demon-hunter': 2,
+        u'monk': 3,
+        u'witch-doctor': 4,
+        u'wizard': 5,
+    }
+
+    def __init__(self, **kwargs):
+        super(BuildsList, self).__init__(**kwargs)
+        self.query = {}
+
+    def get_queryset(self):
+        hero_class = self.kwargs.get(u'optional', None)
+        if hero_class and hero_class in self.HERO_CLASSES.keys():
+            self.query[u'hero_class'] = self.HERO_CLASSES[hero_class]
+        builds = self.model.objects.filter(**self.query)
+        return builds
 
 
 class BuildDetail(DetailView):
@@ -87,3 +107,7 @@ class BuildAdd(CreateView):
 
     def get_success_url(self):
         return reverse(u'index')
+
+
+class FAQPage(TemplateView):
+    template_name = u'faq.html'

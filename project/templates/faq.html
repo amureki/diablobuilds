@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FAQ
+{% endblock title %}
+
+{% block nav-faq %}active{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>FAQ<small></small></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <h3>Q: Как часто можно голосовать?</h3><br/>
+
+            <p>Голосовать за один билд можно только один раз.</p>
+            <hr/>
+
+            <h3>Q: Кто может добавлять билды?</h3><br/>
+
+            <p>Любой посетитель сайта может без регистрации добавлять свой билд и участвовать в рейтинге.</p>
+            <hr/>
+
+            <h3>Q: Какое дальнейшее развитие?</h3><br/>
+
+            <p>Все сейчас в стадии разработки, есть масса планов по развитию, но все это будет лишь только если проект будет действительно востребован.</p>
+            <hr/>
+
+            <h3>Q: Есть идея/предложение/вопрос, куда обратиться?</h3><br/>
+
+            <p>Можно написать на почту <a href="mailto:mail@diablobuilds.ru">mail@diablobuilds.ru</a> или постучать в твиттер к <a href="http://twitter.com/amureki">@amureki</a>.</p>
+            <hr/>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+            {% include 'sidebar.html' %}
+        </div>
+    </div>
+{% endblock content %}

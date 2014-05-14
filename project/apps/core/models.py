@@ -6,24 +6,24 @@ from django.db import models
 
 class Build(models.Model):
     BARBARIAN = 0
-    WITCH_DOCTOR = 1
-    CRUSADER = 2
+    CRUSADER = 1
+    DEMON_HUNTER = 2
     MONK = 3
-    DEMON_HUNTER = 4
+    WITCH_DOCTOR = 4
     WIZARD = 5
 
     HERO_CLASSES = (
         (BARBARIAN, u'Варвар'),
-        (WITCH_DOCTOR, u'Колдун'),
         (CRUSADER, u'Крестоносец'),
-        (MONK, u'Монах'),
         (DEMON_HUNTER, u'Охотник на демонов'),
+        (MONK, u'Монах'),
+        (WITCH_DOCTOR, u'Колдун'),
         (WIZARD, u'Чародей'),
     )
 
     author = models.CharField(u'Автор', max_length=255, default=u'Гость')
     name = models.CharField(u'Название', max_length=255)
-    hero_class = models.IntegerField(u'Класс', choices=HERO_CLASSES, default=0)
+    hero_class = models.IntegerField(u'Класс', choices=HERO_CLASSES, default=BARBARIAN)
     calculator_url = models.URLField(u'Ссылка на калькулятор', max_length=255)
     profile_url = models.URLField(u'Ссылка на профиль', max_length=255, blank=True, null=True)
     diablo_version = models.CharField(u'Версия игры', max_length=255, default=u'2.0.4')

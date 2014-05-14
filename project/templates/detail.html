@@ -8,31 +8,23 @@
 {% block nav-builds %}active{% endblock %}
 
 {% block content %}
-    <div class="blog-header">
-{#        <h1 class="blog-title">{{ build.name }}</h1>#}
-{##}
-{#        <p class="lead blog-description">#}
-{#            {{ build.date_created|date:"DATE_FORMAT" }}, автор:#}
-{#            {% if build.author != 'Гость' %}#}
-{#                <a href="#">{{ build.author }}</a>#}
-{#            {% else %}#}
-{#                {{ build.author }}#}
-{#            {% endif %}#}
-{#        </p>#}
+    <div class="page-header">
+        <h1>Билды Diablo 3
+            <small></small>
+        </h1>
     </div>
 
     <div class="row">
-
-        <div class="col-sm-8 blog-main">
-            <div class="blog-post">
-                <h2 class="blog-post-title">{{ build.name }}</h2>
+        <div class="col-md-6 col-md-offset-1">
+            <div class="row">
+                <h2>{{ build.name }}</h2>
 
                 <div class="alert alert-warning" hidden="hidden">
                     <button type="button" class="close" data-hide="alert" aria-hidden="true">&times;</button>
                     Вы уже голосовали за этот билд.
                 </div>
 
-                <p class="blog-post-meta pull-left">{{ build.date_created|date:"DATE_FORMAT" }}, автор:
+                <p class="pull-left">{{ build.date_created|date:"DATE_FORMAT" }}, автор:
                     {% if build.author != 'Гость' %}
                         <a href="#">{{ build.author }}</a>
                     {% else %}
@@ -49,7 +41,7 @@
                 </p>
                 <br><br>
 
-                <p><a href="{{ build.calculator_url }}">{{ build.calculator_url }}</a></p>
+                <p><a href="{{ build.calculator_url }}">Ссылка на калькулятор</a></p>
                 <hr>
 
                 <p>{{ build.description|markdown }}</p>
@@ -64,15 +56,8 @@
             </div>
         </div>
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-            <div class="sidebar-module sidebar-module-inset">
-                <h4>О проекте</h4>
-
-                <p>Проект создан для составления рейтинга билдов для <em>актуальной на текущий момент</em> версии игры
-                    Diablo 3.</p>
-
-                <p>Текущая версия игры: <strong>{{ CURRENT_GAME_VERSION }}</strong></p>
-            </div>
+        <div class="col-md-3 col-md-offset-1">
+            {% include 'sidebar.html' %}
         </div>
     </div>
 {% endblock content %}
