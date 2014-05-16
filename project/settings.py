@@ -67,13 +67,13 @@ class Development(DevelopmentDatabaseSettings, BaseSettings):
     TEMPLATE_DEBUG = DEBUG
 
 
-class Staging(StagingDatabaseSettings, BaseSettings, ProductionMediaSettings):
+class Staging(StagingDatabaseSettings, ProductionMediaSettings, BaseSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
     }
 
 
-class Production(ProductionDatabaseSettings, BaseSettings, ProductionMediaSettings):
+class Production(ProductionDatabaseSettings, ProductionMediaSettings, BaseSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
     }
