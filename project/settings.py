@@ -6,7 +6,7 @@ from configurations import Settings
 from config.django.database import DevelopmentDatabaseSettings, StagingDatabaseSettings, ProductionDatabaseSettings, \
     TestDatabaseSettings
 from config.django.i18n import LocaleSettings
-from config.django.media import MediaSettings
+from config.django.media import MediaSettings, ProductionMediaSettings
 from config.django.middleware import MiddlewareSetings
 from config.django.logging import LoggingSettings
 from config.django.template import TemplateSettings
@@ -67,13 +67,13 @@ class Development(DevelopmentDatabaseSettings, BaseSettings):
     TEMPLATE_DEBUG = DEBUG
 
 
-class Staging(StagingDatabaseSettings, BaseSettings):
+class Staging(StagingDatabaseSettings, BaseSettings, ProductionMediaSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
     }
 
 
-class Production(ProductionDatabaseSettings, BaseSettings):
+class Production(ProductionDatabaseSettings, BaseSettings, ProductionMediaSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
     }
