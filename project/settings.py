@@ -23,7 +23,8 @@ class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSett
 
     MANAGERS = ADMINS
 
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = [u'diablobuilds.ru', ]
+    INTERNAL_IPS = ['127.0.0.1', ]
 
     SITE_ID = 1
 
