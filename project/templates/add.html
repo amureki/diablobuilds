@@ -22,13 +22,9 @@
                     <div class="form-group {% if field.errors %}has-error has-feedback{% endif %}">
                         <label class="control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
                         {{ field }}
-                        {% if field.name == 'description' %}
-                            <p class="help-block">
-                                Доступна markdown-разметка,
-                                <a href="http://daringfireball.net/projects/markdown/syntax"
-                                   rel="nofollow" target="_blank">подробнее</a>.
-                            </p>
-                        {% endif %}
+                        <p class="help-block">
+                            {{ field.help_text|safe }}
+                        </p>
                     </div>
                     {% for error in field.errors %}
                         <span class="text-danger">{{ error }}</span>

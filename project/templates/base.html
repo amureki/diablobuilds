@@ -16,14 +16,14 @@
     <meta property="og:type" content="{% block og-type %}{% endblock og-type %}"/>
     <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
     <meta property="og:image" content="{% block og-image %}{% endblock og-image %}"/>
-    {% block og-sitename %}<meta property="og:site_name" content="{# PROJECT_NAME #}"/>{% endblock og-sitename %}
+    {% block og-sitename %}<meta property="og:site_name" content="diablobuilds"/>{% endblock og-sitename %}
 
     <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
 
     <link rel="stylesheet" href="//yandex.st/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/bootstrap-markdown.min.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
 
     {% if debug %}
         {# css #}

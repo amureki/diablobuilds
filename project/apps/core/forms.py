@@ -27,6 +27,11 @@ class CreateForm(forms.ModelForm):
             raise forms.ValidationError(u'Введите ссылку на ролик на Youtube')
         return self.cleaned_data[u'youtube']
 
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={u'class': u'form-control', u'type': 'email'}),
+        error_messages={'invalid': u'Пожалуйста, введите корректный e-mail адрес.'}
+    )
+
     class Meta:
         model = Build
         exclude = (u'published', u'diablo_version', u'rating',)

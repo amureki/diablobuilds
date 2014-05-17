@@ -22,13 +22,19 @@ class Build(models.Model):
     )
 
     author = models.CharField(u'Автор', max_length=255, default=u'Гость')
-    name = models.CharField(u'Название', max_length=255)
+    email = models.EmailField('Электронная почта', max_length=255, help_text=u'Не будет отображаться на сайте.')
+    name = models.CharField(u'Название билда', max_length=255)
     hero_class = models.IntegerField(u'Класс', choices=HERO_CLASSES, default=BARBARIAN)
-    calculator_url = models.URLField(u'Ссылка на калькулятор', max_length=255)
-    profile_url = models.URLField(u'Ссылка на профиль', max_length=255, blank=True, null=True)
+    calculator_url = models.URLField(u'Ссылка на калькулятор Blizzard', max_length=255)
+    profile_url = models.URLField(u'Ссылка на профиль Blizzard', max_length=255, blank=True, null=True)
     diablo_version = models.CharField(u'Версия игры', max_length=255, default=u'2.0.4')
-    description = models.TextField(u'Описание')
-    youtube = models.URLField(u'Ссылка на youtube', max_length=255, blank=True, null=True)
+    description = models.TextField(u'Описание',
+                                   help_text=u'Доступна markdown-разметка ('
+                                   u'<a href="http://daringfireball.net/projects/markdown/syntax" '
+                                   u'rel="nofollow" target="_blank">описание</a>)'
+                                   )
+    youtube = models.URLField(u'Видео работы билда на youtube', max_length=255, blank=True, null=True,
+                              help_text=u'Пример ссылки: http://www.youtube.com/watch?v=juT-1ew-ffc')
     rating = models.IntegerField(u'Рейтинг', default=0)
 
     published = models.BooleanField(u'Опубликован', default=False)

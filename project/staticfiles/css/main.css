@@ -8,7 +8,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: #1e2127 url(http://127.0.0.1:5000/static/img/bg.jpg) center 0 no-repeat;
+    background: #1e2127 url(http://127.0.0.1:8000/static/img/dark_wall.png);
 }
 
 #footer {
