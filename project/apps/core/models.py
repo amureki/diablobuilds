@@ -65,7 +65,7 @@ class Build(models.Model):
 
 class Guest(models.Model):
     ip = models.CharField(u'ip-адрес', max_length=255, default=0)
-    rated_builds = models.ManyToManyField(Build, verbose_name=u'Оцененные билды', blank=True, null=True)
+    rated_builds = models.ManyToManyField(Build, through=u'Vote', verbose_name=u'Оцененные билды', blank=True, null=True)
 
     path = models.CharField(u'Последний запрос', max_length=255, null=True, blank=True)
     referrer = models.TextField(u'Последний Referrer', null=True, blank=True)
@@ -81,3 +81,16 @@ class Guest(models.Model):
 
     def __unicode__(self):
         return self.ip
+
+
+class Vote(models.Model):
+    build = models.ForeignKey(Build)
+    guest = models.ForeignKey(Guest)
+    date_voted = models.DateField(auto_now=True)
+
+    class Meta:
+        verbose_name = u'Голос'
+        verbose_name_plural = u'Голоса'
+
+    def __unicode__(self):
+        return u'%s за %s' % (self.guest, self.build)

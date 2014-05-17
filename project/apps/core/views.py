@@ -1,10 +1,11 @@
 # coding: utf-8
+from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView, CreateView, View, TemplateView
 from rebranch_shortcuts.django.models import get_object_or_none
 from rebranch_shortcuts.django.views import JSONResponseMixin
 from project.apps.core.forms import CreateForm
-from project.apps.core.models import Build, Guest
+from project.apps.core.models import Build, Guest, Vote
 
 
 class IndexPage(ListView):
@@ -50,7 +51,7 @@ class BuildDetail(DetailView):
     context_object_name = u'build'
 
 
-class BuildChangeRating(View, JSONResponseMixin):
+class BuildVote(View, JSONResponseMixin):
     def post(self, request, *args, **kwargs):
         action = request.POST.get(u'action', u'')
         build_id = request.POST.get(u'id', u'')
@@ -60,21 +61,12 @@ class BuildChangeRating(View, JSONResponseMixin):
         user_agent = request.META.get('USER_AGENT')
         referrer = request.META.get('HTTP_REFERRER')
 
-        # if request.session.get(user_ip):
-        #     rated = request.session.get(user_ip)
-        #     if build_id in rated:
-        #         data = {
-        #             u'error': u'Вы уже голосовали за этот билд'
-        #         }
-        #         return self.render_to_json_response(status=self.response_status.fail, data=data)
-        #     rated.append(build_id)
-        #     request.session.modified = True
-        # else:
-        #     request.session[user_ip] = (build_id,)
-
         build = get_object_or_none(Build, id=build_id)
 
-        guest, created = Guest.objects.get_or_create(
+        if not build or not action:
+            return self.render_to_json_response(status=self.response_status.fail)
+
+        guest, _ = Guest.objects.get_or_create(
             ip=ip,
             defaults={
                 u'user_agent': user_agent,
@@ -82,16 +74,18 @@ class BuildChangeRating(View, JSONResponseMixin):
                 u'path': path,
             }
         )
-        if not created and build in guest.rated_builds.all():
+
+        vote, created = Vote.objects.get_or_create(
+            date_voted=datetime.now(),
+            build=build,
+            guest=guest,
+        )
+
+        if not created:
             return self.render_to_json_response(
                 status=self.response_status.fail,
-                data={u'error': u'Вы уже голосовали за этот билд'}
+                data={u'error': u'Вы уже голосовали за этот билд сегодня.'}
             )
-
-        guest.rated_builds.add(build)
-
-        if not build or not action:
-            return self.render_to_json_response(status=self.response_status.fail)
 
         if action == u'up':
             build.rate_up()

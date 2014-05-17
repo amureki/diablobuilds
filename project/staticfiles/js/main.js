@@ -9,7 +9,7 @@ function BuildRateChange() {
         var csrftoken = $(this).parent().find("[name='csrfmiddlewaretoken']");
 //        alert(window.location.pathname);
         $.ajax({
-            url: '/rating/',
+            url: '/vote/',
             type: "POST",
             data: "id=" + build_id + "&action=" + action + "&csrfmiddlewaretoken=" + csrftoken.val(),
             success: function (data) {

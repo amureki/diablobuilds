@@ -6,31 +6,6 @@ from project.apps.core.models import Build
 
 
 class CreateForm(forms.ModelForm):
-
-    # def __init__(self, *args, **kwargs):
-    #     super(ProductOfferInlineFormAdmin, self).__init__(*args, **kwargs)
-    #     instance = kwargs.get(u'instance')
-    #     if instance:
-    #         self.fields[u'size'].initial = instance.product_offer.size.size
-
-    # def clean_email(self):
-    #     if User.objects.filter(email__iexact=self.cleaned_data[u'email']).exists():
-    #         raise forms.ValidationError(u'Данный почтовый ящик уже используется')
-    #     return self.cleaned_data[u'email']
-    #
-    # def clean_password(self):
-    #     password = self.cleaned_data.get(u'password', u'')
-    #     if not len(password) >= 6:
-    #         raise forms.ValidationError(u'Пароль должен быть не менее 6 символов')
-    #     if password.isspace() or len(password.strip()) != len(password):
-    #         raise forms.ValidationError(u'Пароль не может состоять из пробелов')
-    #     return password
-    #
-    # def clean_phone(self):
-    #     if Account.objects.filter(phone__iexact=self.cleaned_data[u'phone']).exists():
-    #         raise forms.ValidationError(u'Данный телефон уже используется')
-    #     return self.cleaned_data[u'phone']
-
     def clean_calculator_url(self):
         url = urlparse(self.cleaned_data[u'calculator_url'])
         valid_domain = u'eu.battle.net'
