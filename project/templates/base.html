@@ -74,6 +74,14 @@
 </div>
 
 <div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">
+                <button type="button" class="close" data-hide="alert" aria-hidden="true">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block content %}{% endblock content %}
 </div>
 

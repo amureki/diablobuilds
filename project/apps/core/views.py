@@ -1,5 +1,6 @@
 # coding: utf-8
 from datetime import datetime
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView, DetailView, CreateView, View, TemplateView
 from rebranch_shortcuts.django.models import get_object_or_none
@@ -12,6 +13,9 @@ class IndexPage(ListView):
     template_name = u'index.html'
     model = Build
     context_object_name = u'builds'
+
+    def get_queryset(self):
+        return self.model.published_objects.all()
 
 
 class BuildsList(ListView):
@@ -39,7 +43,7 @@ class BuildsList(ListView):
         hero_class = self.kwargs.get(u'optional', None)
         if hero_class and hero_class in self.HERO_CLASSES.keys():
             self.query[u'hero_class'] = self.HERO_CLASSES[hero_class]
-        builds = self.model.objects.filter(**self.query)
+        builds = self.model.published_objects.filter(**self.query)
         if sort and sort in self.SORT_PARAMS:
             builds = reversed(builds.order_by(sort))
         return builds
@@ -105,6 +109,7 @@ class BuildAdd(CreateView):
     form_class = CreateForm
 
     def get_success_url(self):
+        messages.success(self.request, u'Билд успешно добавлен на модерацию.')
         return reverse(u'index')
 
 

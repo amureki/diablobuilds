@@ -4,6 +4,11 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 
+class PublishedBuildManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedBuildManager, self).get_queryset().filter(published=True)
+
+
 class Build(models.Model):
     BARBARIAN = 0
     CRUSADER = 1
@@ -40,6 +45,9 @@ class Build(models.Model):
     published = models.BooleanField(u'Опубликован', default=False)
 
     date_created = models.DateTimeField(u'Дата создания', auto_now_add=True)
+
+    objects = models.Manager()
+    published_objects = PublishedBuildManager()
 
     class Meta:
         verbose_name = u'Билд'

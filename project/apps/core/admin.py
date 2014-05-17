@@ -6,6 +6,12 @@ from django_markdown.admin import MarkdownModelAdmin
 from project.apps.core.models import Build, Guest, Vote
 
 
+class BuildAdmin(MarkdownModelAdmin):
+    list_display = (u'id', u'name', u'published')
+    list_display_links = (u'id', u'name',)
+    list_filter = (u'published',)
+
+
 class VoteInline(admin.StackedInline):
     model = Vote
     extra = 0
@@ -18,6 +24,5 @@ class GuestAdmin(admin.ModelAdmin):
     inlines = (VoteInline,)
 
 
-# admin.site.register(Build)
-admin.site.register(Build, MarkdownModelAdmin)
+admin.site.register(Build, BuildAdmin)
 admin.site.register(Guest, GuestAdmin)

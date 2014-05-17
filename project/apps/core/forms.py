@@ -23,7 +23,7 @@ class CreateForm(forms.ModelForm):
     def clean_youtube(self):
         url = urlparse(self.cleaned_data[u'youtube'])
         valid_domain = u'youtube.com'
-        if not url.netloc == valid_domain:
+        if url.netloc and not url.netloc == valid_domain:
             raise forms.ValidationError(u'Введите ссылку на ролик на Youtube')
         return self.cleaned_data[u'youtube']
 
