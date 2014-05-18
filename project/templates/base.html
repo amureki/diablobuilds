@@ -11,12 +11,14 @@
     <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
     <meta name="description" content="{% block description %}{% endblock description %}">
 
-    <meta property="og:title" content="{% block og-title %}{% endblock og-title %}"/>
-    <meta property="og:description" content="{% block og-description %}{% endblock og-description %}"/>
+    <meta property="og:title" content="{% block og-title %}diablobuilds{% endblock og-title %}"/>
+    <meta property="og:description" content="{% block og-description %}Build ratings for Diablo 3{% endblock og-description %}"/>
     <meta property="og:type" content="{% block og-type %}{% endblock og-type %}"/>
     <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
     <meta property="og:image" content="{% block og-image %}{% endblock og-image %}"/>
     {% block og-sitename %}<meta property="og:site_name" content="diablobuilds"/>{% endblock og-sitename %}
+
+    <meta name='yandex-verification' content='59e6b5d1c4fac0a3'/>
 
     <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
 
