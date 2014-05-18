@@ -10,12 +10,13 @@ from config.django.media import MediaSettings, ProductionMediaSettings
 from config.django.middleware import MiddlewareSetings
 from config.django.logging import LoggingSettings
 from config.django.template import TemplateSettings
+from config.django.email import EmailSettings
 
 from config.apps.disqus import DisqusSettings
 
 
-class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSettings, TemplateSettings, Settings,
-                   DisqusSettings):
+class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSettings, EmailSettings, TemplateSettings,
+                   Settings, DisqusSettings):
     PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
     sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 

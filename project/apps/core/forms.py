@@ -16,7 +16,7 @@ class CreateForm(forms.ModelForm):
     def clean_profile_url(self):
         url = urlparse(self.cleaned_data[u'profile_url'])
         valid_domain = u'eu.battle.net'
-        if not url.netloc == valid_domain:
+        if url.netloc and not url.netloc == valid_domain:
             raise forms.ValidationError(u'Введите ссылку на профиль на сайте Blizzard')
         return self.cleaned_data[u'profile_url']
 

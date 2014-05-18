@@ -1,7 +1,9 @@
 # coding: utf-8
 from datetime import datetime
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, View, TemplateView
 from rebranch_shortcuts.django.models import get_object_or_none
 from rebranch_shortcuts.django.views import JSONResponseMixin
@@ -109,8 +111,17 @@ class BuildAdd(CreateView):
     form_class = CreateForm
 
     def get_success_url(self):
-        messages.success(self.request, u'Билд успешно добавлен на модерацию.')
         return reverse(u'index')
+
+    def form_valid(self, form):
+        messages.success(self.request, u'Билд успешно добавлен на модерацию.')
+        build = form.cleaned_data.get(u'name', None)
+        send_mail(
+            u'Новый билд',
+            u'На сайте появился новый билд под названием %s' % build,
+            u'mail@diablobuilds.ru', [u'fly.amureki@gmail.com']
+        )
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class FAQPage(TemplateView):
