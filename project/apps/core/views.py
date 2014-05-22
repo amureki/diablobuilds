@@ -114,11 +114,11 @@ class BuildAdd(CreateView):
         return reverse(u'index')
 
     def form_valid(self, form):
+        build = Build.objects.create(**form.cleaned_data)
         messages.success(self.request, u'Билд успешно добавлен на модерацию.')
-        build = form.cleaned_data.get(u'name', None)
         send_mail(
             u'Новый билд',
-            u'На сайте появился новый билд под названием %s' % build,
+            u'На сайте появился новый билд под названием %s' % build.name,
             u'mail@diablobuilds.ru', [u'fly.amureki@gmail.com']
         )
         return HttpResponseRedirect(self.get_success_url())
