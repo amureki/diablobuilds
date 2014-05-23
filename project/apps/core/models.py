@@ -1,5 +1,6 @@
 # coding: utf-8
 import re
+from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -108,3 +109,16 @@ class Vote(models.Model):
 
     def __unicode__(self):
         return u'%s за %s' % (self.guest, self.build)
+
+
+class News(models.Model):
+    title = models.CharField(u'Заголовок', max_length=255, blank=True, null=True)
+    text = models.TextField(u'Текст', blank=True, null=True)
+    date_created = models.DateTimeField(u'Дата создания', default=datetime.now())
+
+    class Meta:
+        verbose_name = u'Новость'
+        verbose_name_plural = u'Новости'
+
+    def __unicode__(self):
+        return self.title

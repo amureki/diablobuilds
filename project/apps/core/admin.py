@@ -3,7 +3,7 @@ from django.contrib import admin
 
 from django_markdown.admin import MarkdownModelAdmin
 
-from project.apps.core.models import Build, Guest, Vote
+from project.apps.core.models import Build, Guest, Vote, News
 
 
 class BuildAdmin(MarkdownModelAdmin):
@@ -24,5 +24,11 @@ class GuestAdmin(admin.ModelAdmin):
     inlines = (VoteInline,)
 
 
+class NewsAdmin(admin.ModelAdmin):
+    list_display = (u'id', u'title', u'date_created',)
+    list_display_links = (u'id', u'title', u'date_created',)
+
+
 admin.site.register(Build, BuildAdmin)
 admin.site.register(Guest, GuestAdmin)
+admin.site.register(News, NewsAdmin)
