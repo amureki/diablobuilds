@@ -8,7 +8,8 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: #1e2127 url(../img/dark_wall.png);
+    background: #1e2127 url(../img/cartographer.png);
+
 }
 
 #footer {
