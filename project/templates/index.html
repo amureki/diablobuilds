@@ -17,18 +17,28 @@
                 <div class="row">
                     <h2><a href="{{ build.get_absolute_url }}">{{ build.name }}</a></h2>
 
+                    <div id="{{ build.id }}" class="alert alert-info" hidden="hidden">
+                        <button type="button" class="close" data-hide="alert" aria-hidden="true">&times;</button>
+                        Вы уже голосовали за этот билд сегодня.
+                    </div>
+
                     <p class="pull-left">{{ build.date_created|date:"DATE_FORMAT" }}, автор:
                         {% if build.author != 'Гость' %}
-                            <a href="#">{{ build.author }}</a>
+{#                            <a href="#">#}
+                            {{ build.author }}
+{#                            </a>#}
                         {% else %}
                             {{ build.author }}
                         {% endif %}
                     </p>
 
-                    <p class="pull-right">
+                    <p class="pull-right rating" id="{{ build.id }}">
+                        {% csrf_token %}
                         Класс: <a href="#">{{ build.get_hero_class_display }}</a>
                         | Рейтинг:
-                        {{ build.rating }}
+                        <button id="down" data-value="down" class="btn-link"><strong>-</strong></button>
+                        <span class="rating" id="{{ build.id }}">{{ build.rating }}</span>
+                        <button id="up" data-value="up" class="btn-link"><strong>+</strong></button>
                     </p>
                     <br><br>
 
