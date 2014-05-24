@@ -20,7 +20,9 @@ class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSett
     PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
     sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
-    ADMINS = ()
+    ADMINS = (
+        ('amureki', 'fly.amureki@gmail.com'),
+    )
 
     MANAGERS = ADMINS
 
@@ -71,6 +73,23 @@ class Development(DevelopmentDatabaseSettings, BaseSettings):
 class Staging(StagingDatabaseSettings, ProductionMediaSettings, BaseSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
+    }
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'mail_admins': {
+                'level': 'ERROR',
+                'class': 'django.utils.log.AdminEmailHandler'
+            }
+        },
+        'loggers': {
+            'django.request': {
+                'handlers': ['mail_admins'],
+                'level': 'ERROR',
+                'propagate': True,
+            },
+        }
     }
 
 
