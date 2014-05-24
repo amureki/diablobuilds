@@ -15,6 +15,7 @@ class BuildAdmin(MarkdownModelAdmin):
 class VoteInline(admin.StackedInline):
     model = Vote
     extra = 0
+    readonly_fields = (u'date_voted',)
 
 
 class GuestAdmin(admin.ModelAdmin):
@@ -30,5 +31,6 @@ class NewsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Build, BuildAdmin)
+admin.site.register(Vote)
 admin.site.register(Guest, GuestAdmin)
 admin.site.register(News, NewsAdmin)

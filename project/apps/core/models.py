@@ -83,7 +83,7 @@ class Guest(models.Model):
     rated_builds = models.ManyToManyField(Build, through=u'Vote', verbose_name=u'Оцененные билды', blank=True, null=True)
 
     path = models.CharField(u'Последний запрос', max_length=255, null=True, blank=True)
-    referrer = models.TextField(u'Последний Referrer', null=True, blank=True)
+    referer = models.TextField(u'Последний Referer', null=True, blank=True)
     user_agent = models.TextField(u'Последний User Agent', null=True, blank=True)
 
     date_created = models.DateTimeField(u'Дата создания', auto_now_add=True)
@@ -99,9 +99,17 @@ class Guest(models.Model):
 
 
 class Vote(models.Model):
-    build = models.ForeignKey(Build)
-    guest = models.ForeignKey(Guest)
-    date_voted = models.DateField(auto_now=True)
+    DOWN = 0
+    UP = 1
+
+    VOTE_CHOICES = (
+        (DOWN, u'Вниз'),
+        (UP, u'Вверх'),
+    )
+    build = models.ForeignKey(Build, verbose_name=u'Билд')
+    guest = models.ForeignKey(Guest, verbose_name=u'Гость')
+    action = models.IntegerField(u'Голос', choices=VOTE_CHOICES, default=0)
+    date_voted = models.DateField(u'Дата последнего голоса', auto_now=True)
 
     class Meta:
         verbose_name = u'Голос'

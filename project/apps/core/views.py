@@ -59,32 +59,46 @@ class BuildDetail(DetailView):
 
 class BuildVote(View, JSONResponseMixin):
     def post(self, request, *args, **kwargs):
-        action = request.POST.get(u'action', u'')
         build_id = request.POST.get(u'id', u'')
 
         ip = request.META.get('HTTP_X_FORWARDED_FOR', '') or request.META.get('REMOTE_ADDR', '')
         path = request.META.get('PATH_INFO')
-        user_agent = request.META.get('USER_AGENT')
-        referrer = request.META.get('HTTP_REFERRER')
+        user_agent = request.META.get('HTTP_USER_AGENT')
+        referer = request.META.get('HTTP_REFERER')
 
         build = get_object_or_none(Build, id=build_id)
 
-        if not build or not action:
+        action_param = request.POST.get(u'action', u'')
+        if action_param == u'up':
+            action = 1
+        elif action_param == u'down':
+            action = 0
+        else:
+            action = None
+
+        if not build or action is None:
             return self.render_to_json_response(status=self.response_status.fail)
 
         guest, _ = Guest.objects.get_or_create(
             ip=ip,
-            defaults={
-                u'user_agent': user_agent,
-                u'referrer': referrer,
-                u'path': path,
-            }
+            # defaults={
+            #     u'user_agent': user_agent,
+            #     u'referrer': referrer,
+            #     u'path': path,
+            # }
         )
+        guest.user_agent = user_agent
+        guest.referer = referer
+        guest.path = path
+        guest.save()
 
         vote, created = Vote.objects.get_or_create(
             date_voted=datetime.now(),
             build=build,
             guest=guest,
+            defaults={
+                u'action': action
+            }
         )
 
         if not created:
@@ -93,9 +107,9 @@ class BuildVote(View, JSONResponseMixin):
                 data={u'error': u'Вы уже голосовали за этот билд сегодня.'}
             )
 
-        if action == u'up':
+        if action == 1:
             build.rate_up()
-        elif action == u'down':
+        elif action == 0:
             build.rate_down()
         else:
             return self.render_to_json_response(status=self.response_status.fail)
