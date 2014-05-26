@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags %}
+{% load markdown_deux_tags core_extras %}
 
 {% block title %}
     {{ build.name }}
@@ -25,8 +25,9 @@
                 </div>
 
                 <p class="pull-left">{{ build.date_created|date:"DATE_FORMAT" }}, автор:
-                    {% if build.author != 'Гость' %}
-                        <a href="#">{{ build.author }}</a>
+{#                    {% if build.author != 'Гость' %}#}
+                    {% if build.author != 'Гость' and build.author|battletag != None %}
+                        {{ build.author|battletag|safe }}
                     {% else %}
                         {{ build.author }}
                     {% endif %}

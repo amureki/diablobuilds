@@ -27,8 +27,8 @@ class Build(models.Model):
         (WIZARD, u'Чародей'),
     )
 
-    author = models.CharField(u'Автор', max_length=255, default=u'Гость')
-    email = models.EmailField('Электронная почта', max_length=255, help_text=u'Не будет отображаться на сайте.')
+    author = models.CharField(u'Автор', help_text=u'Можно указать свой BattleTag', max_length=255, default=u'Гость')
+    email = models.EmailField('Электронная почта', max_length=255, help_text=u'Не будет отображаться на сайте')
     name = models.CharField(u'Название билда', max_length=255)
     hero_class = models.IntegerField(u'Класс', choices=HERO_CLASSES, default=BARBARIAN)
     calculator_url = models.URLField(u'Ссылка на калькулятор Blizzard', max_length=255)

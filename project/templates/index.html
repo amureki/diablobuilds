@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load core_extras %}
 
 {% block title %}
     Билды для Diablo 3
@@ -23,10 +24,9 @@
                     </div>
 
                     <p class="pull-left">{{ build.date_created|date:"DATE_FORMAT" }}, автор:
-                        {% if build.author != 'Гость' %}
-{#                            <a href="#">#}
-                            {{ build.author }}
-{#                            </a>#}
+{#                        {% if build.author != 'Гость' %}#}
+                        {% if build.author != 'Гость' and build.author|battletag != None %}
+                            {{ build.author|battletag|safe }}
                         {% else %}
                             {{ build.author }}
                         {% endif %}
