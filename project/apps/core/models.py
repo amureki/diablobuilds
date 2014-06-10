@@ -125,6 +125,7 @@ class News(models.Model):
     date_created = models.DateTimeField(u'Дата создания', default=datetime.now())
 
     class Meta:
+        ordering = (u'-id',)
         verbose_name = u'Новость'
         verbose_name_plural = u'Новости'
 
