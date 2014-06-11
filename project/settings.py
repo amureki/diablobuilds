@@ -62,7 +62,7 @@ class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSett
         'core',
     )
 
-    CURRENT_GAME_VERSION = u'2.0.5'
+    CURRENT_GAME_VERSION = u'2.0.6'
 
 
 class Development(DevelopmentDatabaseSettings, BaseSettings):
