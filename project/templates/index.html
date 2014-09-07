@@ -16,7 +16,7 @@
         <div class="col-md-6 col-md-offset-1">
             {% for build in builds %}
                 <div class="row">
-                    <h2><a href="{{ build.get_absolute_url }}">{{ build.name }}</a></h2>
+                    <h2><a href="{{ build.get_absolute_url }}">{{ build.name }}</a> <small>{{ build.diablo_version|default:"" }}</small></h2>
 
                     <div id="{{ build.id }}" class="alert alert-info" hidden="hidden">
                         <button type="button" class="close" data-hide="alert" aria-hidden="true">&times;</button>
