@@ -12,7 +12,7 @@ class TemplateSettings(object):
             'django.core.context_processors.debug',
             'django.core.context_processors.media',
             'django.core.context_processors.request',
-            'core.context_processors.current_game_version',
+            'constance.context_processors.config',
             'core.context_processors.news',
         )
         return template_processors

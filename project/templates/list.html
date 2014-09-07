@@ -47,7 +47,7 @@
 
                     <p class="pull-right rating" id="{{ build.id }}">
                         {% csrf_token %}
-                        Класс: <a href="#">{{ build.get_hero_class_display }}</a>
+                        Класс: <a href="#"><span><img class="img-rounded" src="{{ build.get_hero_class_icon }}" height="26px"/></span>{{ build.get_hero_class_display }}</a>
                         | Рейтинг:
                         <button id="down" data-value="down" class="btn-link"><strong>-</strong></button>
                         <span class="rating" id="{{ build.id }}">{{ build.rating }}</span>

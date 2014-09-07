@@ -10,6 +10,9 @@ django-configurations
 django-toolbelt
 
 -e git+https://bitbucket.org/rebranch/rebranch-shortcuts#egg=rebranch_shortcuts-dev
+-e git+https://bitbucket.org/rebranch/rebranch-deployment-tools.git#egg=rebranch-deployment-tools
+git+git://github.com/comoga/django-constance#egg=django-constance
+redis==2.10.1
 
 django-disqus==0.4.1
 django-markdown

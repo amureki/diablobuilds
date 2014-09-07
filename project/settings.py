@@ -12,6 +12,7 @@ from config.django.logging import LoggingSettings
 from config.django.template import TemplateSettings
 from config.django.email import EmailSettings
 
+from config.apps.constance import ConstanceBaseSettings, ConstanceProductionSettings
 from config.apps.disqus import DisqusSettings
 
 
@@ -58,19 +59,18 @@ class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSett
         'django_markdown',
         'markdown_deux',
         'django',
+        'constance',
 
         'core',
     )
 
-    CURRENT_GAME_VERSION = u'2.0.6'
 
-
-class Development(DevelopmentDatabaseSettings, BaseSettings):
+class Development(DevelopmentDatabaseSettings, BaseSettings, ConstanceBaseSettings):
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
 
 
-class Staging(StagingDatabaseSettings, ProductionMediaSettings, BaseSettings):
+class Staging(StagingDatabaseSettings, ProductionMediaSettings, BaseSettings, ConstanceProductionSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
     }
@@ -93,7 +93,7 @@ class Staging(StagingDatabaseSettings, ProductionMediaSettings, BaseSettings):
     }
 
 
-class Production(ProductionDatabaseSettings, ProductionMediaSettings, BaseSettings):
+class Production(ProductionDatabaseSettings, ProductionMediaSettings, BaseSettings, ConstanceProductionSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
     }

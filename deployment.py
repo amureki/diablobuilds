@@ -1,4 +1,5 @@
 from rebranch_deployment.docker.services.postgresql.proxy import PostgresqlService
+from rebranch_deployment.docker.services.redis.proxy import RedisService
 from rebranch_deployment.docker.services.django.proxy import DjangoService
 from rebranch_deployment.docker.processes.web.proxy import WebProcess
 from rebranch_deployment.docker.process_managers.supervisor.proxy import SupervisorProcessManager
@@ -20,8 +21,8 @@ class BaseUserConfigurationFactory(UserConfigurationFactoryAbstract):
         )
 
         postgresql = PostgresqlService()
-
-        app.uses(postgresql)
+        redis = RedisService()
+        app.uses(postgresql, redis)
         return app
 
 

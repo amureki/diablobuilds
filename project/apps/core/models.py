@@ -3,6 +3,7 @@ import re
 from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.conf import settings
 
 
 class PublishedBuildManager(models.Manager):
@@ -65,6 +66,20 @@ class Build(models.Model):
             embed = u'<iframe width="560" height="315" src="%s" frameborder="0" allowfullscreen></iframe>' % url
             return embed
         return None
+
+    def get_hero_class_slug(self):
+        slugs = {
+            0: u'barbarian',
+            1: u'crusader',
+            2: u'demonhunter',
+            3: u'monk',
+            4: u'witchdoctor',
+            5: u'wizard',
+        }
+        return slugs[self.hero_class]
+
+    def get_hero_class_icon(self):
+        return settings.STATIC_URL + u'img/heroes/%s.png' % self.get_hero_class_slug()
 
     def rate_up(self):
         self.rating += 1

@@ -28,9 +28,9 @@ class BuildsList(ListView):
     HERO_CLASSES = {
         u'barbarian': 0,
         u'crusader': 1,
-        u'demon-hunter': 2,
+        u'demonhunter': 2,
         u'monk': 3,
-        u'witch-doctor': 4,
+        u'witchdoctor': 4,
         u'wizard': 5,
     }
 
