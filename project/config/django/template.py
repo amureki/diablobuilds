@@ -14,6 +14,7 @@ class TemplateSettings(object):
             'django.core.context_processors.request',
             'constance.context_processors.config',
             'core.context_processors.news',
+            'core.context_processors.builds_count',
         )
         return template_processors
 

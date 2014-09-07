@@ -55,12 +55,13 @@
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'builds_list' %}">Все</a></li>
                         <li class="divider"></li>
-                        <li><a href="{% url 'builds_list' 'barbarian' %}">Варвар</a></li>
-                        <li><a href="{% url 'builds_list' 'crusader' %}">Крестоносец</a></li>
-                        <li><a href="{% url 'builds_list' 'demonhunter' %}">Охотник на демонов</a></li>
-                        <li><a href="{% url 'builds_list' 'monk' %}">Монах</a></li>
-                        <li><a href="{% url 'builds_list' 'witchdoctor' %}">Колдун</a></li>
-                        <li><a href="{% url 'builds_list' 'wizard' %}">Чародей</a></li>
+                        <li><a href="{% url 'builds_list' 'barbarian' %}">Варвар ({{ barbarian_builds_count }})</a></li>
+                        <li><a href="{% url 'builds_list' 'crusader' %}">Крестоносец ({{ crusader_builds_count }})</a></li>
+                        <li><a href="{% url 'builds_list' 'demonhunter' %}">Охотник на демонов
+                            ({{ demonhunter_builds_count }})</a></li>
+                        <li><a href="{% url 'builds_list' 'monk' %}">Монах ({{ monk_builds_count }})</a></li>
+                        <li><a href="{% url 'builds_list' 'witchdoctor' %}">Колдун ({{ witchdoctor_builds_count }})</a></li>
+                        <li><a href="{% url 'builds_list' 'wizard' %}">Чародей ({{ wizard_builds_count }})</a></li>
 {#                        <li class="divider"></li>#}
 {#                        <li class="dropdown-header">Nav header</li>#}
 {#                        <li><a href="#">Separated link</a></li>#}
