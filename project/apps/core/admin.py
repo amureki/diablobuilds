@@ -3,7 +3,7 @@ from django.contrib import admin
 
 from django_markdown.admin import MarkdownModelAdmin
 
-from project.apps.core.models import Build, Guest, Vote, News
+from project.apps.core.models import Build, Guest, Vote, News, Version
 
 
 class BuildAdmin(MarkdownModelAdmin):
@@ -34,3 +34,4 @@ admin.site.register(Build, BuildAdmin)
 admin.site.register(Vote)
 admin.site.register(Guest, GuestAdmin)
 admin.site.register(News, NewsAdmin)
+admin.site.register(Version)

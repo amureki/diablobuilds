@@ -34,7 +34,8 @@ class Build(models.Model):
     hero_class = models.IntegerField(u'Класс', choices=HERO_CLASSES, default=BARBARIAN)
     calculator_url = models.URLField(u'Ссылка на калькулятор Blizzard', max_length=255)
     profile_url = models.URLField(u'Ссылка на профиль Blizzard', max_length=255, blank=True, null=True)
-    diablo_version = models.CharField(u'Версия игры', max_length=255, default=u'2.0.4')
+    # diablo_version = models.CharField(u'Версия игры', max_length=255, default=u'2.0.4')
+    diablo_version = models.ForeignKey(u'Version', verbose_name=u'Версия игры', blank=True, null=True)
     description = models.TextField(u'Описание',
                                    help_text=u'Доступна markdown-разметка ('
                                    u'<a href="http://daringfireball.net/projects/markdown/syntax" '
@@ -54,7 +55,8 @@ class Build(models.Model):
     class Meta:
         verbose_name = u'Билд'
         verbose_name_plural = u'Билды'
-        ordering = (u'-rating', u'-id')
+        # ordering = (u'-rating', u'-id')
+        ordering = (u'-diablo_version', u'-rating')
 
     def get_absolute_url(self):
         return reverse(u'build_detail', args=(self.id,))
@@ -146,3 +148,14 @@ class News(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Version(models.Model):
+    name = models.CharField(u'Версия', max_length=255, default=u'2.1.0')
+
+    class Meta:
+        verbose_name = u'Версия игры'
+        verbose_name_plural = u'Версии игры'
+
+    def __unicode__(self):
+        return self.name
