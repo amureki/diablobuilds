@@ -1,15 +1,26 @@
 # coding: utf-8
 from django.contrib import admin
+from django.forms import ModelForm
 
-from django_markdown.admin import MarkdownModelAdmin
+from ckeditor.widgets import CKEditorWidget
 
 from project.apps.core.models import Build, Guest, Vote, News, Version
 
 
-class BuildAdmin(MarkdownModelAdmin):
+class BuildAdminForm(ModelForm):
+    class Meta:
+        model = Build
+        widgets = {
+            'description': CKEditorWidget
+        }
+
+
+class BuildAdmin(admin.ModelAdmin):
     list_display = (u'id', u'name', u'published')
     list_display_links = (u'id', u'name',)
     list_filter = (u'published',)
+
+    form = BuildAdminForm
 
 
 class VoteInline(admin.StackedInline):

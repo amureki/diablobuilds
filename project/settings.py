@@ -13,11 +13,12 @@ from config.django.template import TemplateSettings
 from config.django.email import EmailSettings
 
 from config.apps.constance import ConstanceBaseSettings, ConstanceProductionSettings
+from config.apps.ckeditor import CKEditorSettings
 from config.apps.disqus import DisqusSettings
 
 
 class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSettings, EmailSettings, TemplateSettings,
-                   Settings, DisqusSettings):
+                   Settings, CKEditorSettings, DisqusSettings):
     PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
     sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
@@ -56,8 +57,7 @@ class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSett
         'gunicorn',
         'raven.contrib.django.raven_compat',
         'disqus',
-        'django_markdown',
-        'markdown_deux',
+        'ckeditor',
         'django',
         'constance',
 

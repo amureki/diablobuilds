@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load markdown_deux_tags core_extras %}
+{% load core_extras %}
 
 {% block title %}
     {{ build.name }}
@@ -46,7 +46,7 @@
                 <p><a href="{{ build.calculator_url }}">Ссылка на калькулятор</a></p>
                 <hr>
 
-                <p>{{ build.description|markdown }}</p>
+                <p>{{ build.description|safe }}</p>
                 {% if build.get_youtube_embed %}
                 <p>Пример работы билда:</p>
                 {{ build.get_youtube_embed|safe }}

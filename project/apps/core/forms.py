@@ -2,6 +2,8 @@
 from urlparse import urlparse
 from django import forms
 
+from ckeditor.widgets import CKEditorWidget
+
 from project.apps.core.models import Build
 
 
@@ -41,6 +43,6 @@ class CreateForm(forms.ModelForm):
             u'hero_class': forms.Select(attrs={u'class': u'form-control'}),
             u'calculator_url': forms.TextInput(attrs={u'class': u'form-control'}),
             u'profile_url': forms.TextInput(attrs={u'class': u'form-control'}),
-            u'description': forms.Textarea(attrs={u'data-provide':u'markdown', u'cols': 50, u'class': u'form-control'}),
+            u'description': CKEditorWidget(attrs={u'cols': 50, u'class': u'form-control'}),
             u'youtube': forms.TextInput(attrs={u'class': u'form-control'}),
         }

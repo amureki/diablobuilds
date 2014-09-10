@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load django_markdown markdown_deux_tags %}
+{% load static %}
 
 {% block title %}
     Добавление билда
@@ -22,6 +22,7 @@
                     <div class="form-group {% if field.errors %}has-error has-feedback{% endif %}">
                         <label class="control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
                         {{ field }}
+                        {{ form.media }}
                         <p class="help-block">
                             {{ field.help_text|safe }}
                         </p>

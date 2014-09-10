@@ -17,7 +17,8 @@ urlpatterns = patterns(
 # 3rd-party apps
 urlpatterns += patterns(
     '',
-    url('^markdown/', include('django_markdown.urls')),
+    # url('^markdown/', include('django_markdown.urls')),
+    url(r'^ckeditor/', include('ckeditor.urls')),
 )
 
 # Project apps

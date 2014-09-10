@@ -44,12 +44,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-{#            <span class="navbar-brand"></span>#}
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="{% block nav-index %}{% endblock %}"><a href="{% url 'index' %}">Diablobuilds.ru</a></li>
-{#                <li class="{% block nav-builds %}{% endblock %}"><a href="{% url 'builds_list' %}">Билды</a></li>#}
                 <li class="dropdown {% block nav-builds %}{% endblock %}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Билды <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -62,10 +60,6 @@
                         <li><a href="{% url 'builds_list' 'monk' %}">Монах ({{ monk_builds_count }})</a></li>
                         <li><a href="{% url 'builds_list' 'witchdoctor' %}">Колдун ({{ witchdoctor_builds_count }})</a></li>
                         <li><a href="{% url 'builds_list' 'wizard' %}">Чародей ({{ wizard_builds_count }})</a></li>
-{#                        <li class="divider"></li>#}
-{#                        <li class="dropdown-header">Nav header</li>#}
-{#                        <li><a href="#">Separated link</a></li>#}
-{#                        <li><a href="#">One more separated link</a></li>#}
                     </ul>
                 </li>
                 <li class="{% block nav-build-add %}{% endblock %}"><a href="{% url 'build_add' %}">Добавить</a></li>

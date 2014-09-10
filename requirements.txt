@@ -15,5 +15,4 @@ git+git://github.com/comoga/django-constance#egg=django-constance
 redis==2.10.1
 
 django-disqus==0.4.1
-django-markdown
-django-markdown-deux
+django-ckeditor-updated==4.4.0
