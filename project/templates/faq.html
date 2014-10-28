@@ -13,7 +13,19 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-1">
-            <h3>Q: Как часто можно голосовать?</h3><br/>
+            {% for faq_entry in faq_list %}
+                <h3>Q: {{ faq_entry.question }}</h3><br/>
+
+                <p>{{ faq_entry.answer }}</p>
+                <hr/>
+
+            {% empty %}
+
+                Здесь пусто.
+
+            {% endfor %}
+
+            <!--<h3>Q: Как часто можно голосовать?</h3><br/>
 
             <p>Голосовать за каждый билд можно один раз в день.</p>
             <hr/>
@@ -31,7 +43,7 @@
             <h3>Q: Есть идея/предложение/вопрос, куда обратиться?</h3><br/>
 
             <p>Можно написать на почту <a href="mailto:mail@diablobuilds.ru">mail@diablobuilds.ru</a> или постучать в твиттер к <a href="http://twitter.com/amureki">@amureki</a>.</p>
-            <hr/>
+            <hr/>-->
         </div>
 
         <div class="col-md-3 col-md-offset-1">

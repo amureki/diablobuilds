@@ -159,3 +159,15 @@ class Version(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class FAQ(models.Model):
+    question = models.CharField(u'Вопрос', max_length=255)
+    answer = models.CharField(u'Ответ', max_length=255)
+
+    class Meta:
+        verbose_name = u'FAQ'
+        verbose_name_plural = u'FAQ'
+
+    def __unicode__(self):
+        return u'Q: {q}\n{a}'.format(q=self.question, a=self.answer)

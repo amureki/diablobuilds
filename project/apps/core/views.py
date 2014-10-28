@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView, View, Templat
 from rebranch_shortcuts.django.models import get_object_or_none
 from rebranch_shortcuts.django.views import JSONResponseMixin
 from project.apps.core.forms import CreateForm
-from project.apps.core.models import Build, Guest, Vote
+from project.apps.core.models import Build, Guest, Vote, FAQ
 
 
 class IndexPage(ListView):
@@ -138,5 +138,7 @@ class BuildAdd(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class FAQPage(TemplateView):
+class FAQPage(ListView):
     template_name = u'faq.html'
+    model = FAQ
+    context_object_name = 'faq_list'

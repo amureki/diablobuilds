@@ -4,7 +4,7 @@ from django.forms import ModelForm
 
 from ckeditor.widgets import CKEditorWidget
 
-from project.apps.core.models import Build, Guest, Vote, News, Version
+from project.apps.core.models import Build, Guest, Vote, News, Version, FAQ
 
 
 class BuildAdminForm(ModelForm):
@@ -41,8 +41,13 @@ class NewsAdmin(admin.ModelAdmin):
     list_display_links = (u'id', u'title', u'date_created',)
 
 
+class FAQAdmin(admin.ModelAdmin):
+    list_display = (u'id', u'question', u'answer')
+
+
 admin.site.register(Build, BuildAdmin)
 admin.site.register(Vote)
 admin.site.register(Guest, GuestAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Version)
+admin.site.register(FAQ, FAQAdmin)

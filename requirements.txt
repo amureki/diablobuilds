@@ -4,7 +4,7 @@ psycopg2
 raven
 uWSGI
 gunicorn
-PIL
+Pillow
 -e hg+https://bitbucket.org/izi/django-admin-tools#egg=django_admin_tools
 django-configurations
 django-toolbelt
