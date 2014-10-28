@@ -16,7 +16,7 @@
             {% for faq_entry in faq_list %}
                 <h3>Q: {{ faq_entry.question }}</h3><br/>
 
-                <p>{{ faq_entry.answer }}</p>
+                <p>{% autoescape off %}{{ faq_entry.answer }}{% endautoescape %}</p>
                 <hr/>
 
             {% empty %}
