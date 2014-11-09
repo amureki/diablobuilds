@@ -1,4 +1,4 @@
-Django==1.6.5
+Django<1.7
 South
 psycopg2
 raven
@@ -14,5 +14,6 @@ django-toolbelt
 git+git://github.com/comoga/django-constance#egg=django-constance
 redis==2.10.1
 
+beautifulsoup4==4.3.2
 django-disqus==0.4.1
 django-ckeditor-updated==4.4.0
