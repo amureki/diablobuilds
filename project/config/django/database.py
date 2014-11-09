@@ -1,4 +1,4 @@
-import dj_database_url
+from jetee_tools.service_resolvers import DjangoDatabaseJeteeServiceConfigResolver
 
 
 class TestDatabaseSettings(object):
@@ -33,7 +33,10 @@ class StagingDatabaseSettings(object):
     @property
     def DATABASES(self):
         databases = {}
-        databases['default'] = dj_database_url.config()
+        databases['default'] = DjangoDatabaseJeteeServiceConfigResolver(
+            host=u'diablobuilds-postgresql',
+            protocol=u'postgresql_psycopg2'
+        ).render()
         return databases
 
 
@@ -41,5 +44,8 @@ class ProductionDatabaseSettings(object):
     @property
     def DATABASES(self):
         databases = {}
-        databases['default'] = dj_database_url.config()
+        databases['default'] = DjangoDatabaseJeteeServiceConfigResolver(
+            host=u'diablobuilds-postgresql',
+            protocol=u'postgresql_psycopg2'
+        ).render()
         return databases

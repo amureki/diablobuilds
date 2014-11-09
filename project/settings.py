@@ -12,7 +12,7 @@ from config.django.logging import LoggingSettings
 from config.django.template import TemplateSettings
 from config.django.email import EmailSettings
 
-from config.apps.constance import ConstanceBaseSettings, ConstanceProductionSettings
+from config.apps.constance import ConstanceDevelopmentSettings, ConstanceProductionSettings
 from config.apps.ckeditor import CKEditorSettings
 from config.apps.disqus import DisqusSettings
 
@@ -65,12 +65,12 @@ class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSett
     )
 
 
-class Development(DevelopmentDatabaseSettings, BaseSettings, ConstanceBaseSettings):
+class Development(DevelopmentDatabaseSettings, BaseSettings, ConstanceDevelopmentSettings):
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
 
 
-class Staging(StagingDatabaseSettings, ProductionMediaSettings, BaseSettings, ConstanceProductionSettings):
+class Staging(StagingDatabaseSettings, ProductionMediaSettings, ConstanceProductionSettings, BaseSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
     }
@@ -93,7 +93,7 @@ class Staging(StagingDatabaseSettings, ProductionMediaSettings, BaseSettings, Co
     }
 
 
-class Production(ProductionDatabaseSettings, ProductionMediaSettings, BaseSettings, ConstanceProductionSettings):
+class Production(ProductionDatabaseSettings, ProductionMediaSettings, ConstanceProductionSettings, BaseSettings):
     RAVEN_CONFIG = {
         u'dsn': u'',
     }

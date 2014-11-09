@@ -1,34 +1,25 @@
-from rebranch_deployment.docker.services.postgresql.proxy import PostgresqlService
-from rebranch_deployment.docker.services.redis.proxy import RedisService
-from rebranch_deployment.docker.services.django.proxy import DjangoService
-from rebranch_deployment.docker.processes.web.proxy import WebProcess
-from rebranch_deployment.docker.process_managers.supervisor.proxy import SupervisorProcessManager
-from rebranch_deployment.local.user_configuration import UserConfigurationFactoryAbstract
+from jetee.service.services.primary import PrimaryService
+from jetee.service.services.postgresql import PostgreSQLService
+from jetee.service.services.redis import RedisService
+
+from jetee.project.projects import DjangoProject
+from jetee.common.user_configuration import AppConfiguration
+from jetee.processes import UWSGIProcess
 
 
-class BaseUserConfigurationFactory(UserConfigurationFactoryAbstract):
-    def get_main_app(self):
-        app = DjangoService(
-            SupervisorProcessManager(
-                startup_cmd=u'supervisord --nodaemon',
-                processes=[
-                    WebProcess(
-                        name=u'main_web',
-                        cmd=u'uwsgi --socket /etc/opa.sock --module project.wsgi --chmod-socket=666 --logto /app/log.log'
-                    )
-                ]
+class Staging(AppConfiguration):
+    hostname = u'188.226.242.137'
+    username = u'root'
+    server_names = [u'diablobuilds.ru']
+
+    def get_primary_service(self):
+        app_service = PrimaryService(
+            project=DjangoProject(
+                cvs_repo_url=u'git@bitbucket.org:amureki/diablobuilds.git',
+                processes=[UWSGIProcess(u'project/wsgi.py')]
             )
         )
+        return app_service
 
-        postgresql = PostgresqlService()
-        redis = RedisService()
-        app.uses(postgresql, redis)
-        return app
-
-
-class Staging(BaseUserConfigurationFactory):
-    HOSTNAME = u'188.226.242.137'
-    USERNAME = u'root'
-    SERVER_NAMES = [u'diablobuilds.ru', ]
-    APT_PACKAGES = []
-    GIT_BRANCH = u'master'
+    def get_secondary_services(self):
+        return [PostgreSQLService(), RedisService()]
