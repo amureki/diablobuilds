@@ -8,7 +8,7 @@ from jetee.processes import UWSGIProcess
 
 
 class Staging(AppConfiguration):
-    hostname = u'188.226.242.137'
+    hostname = u'128.199.47.187'
     username = u'root'
     server_names = [u'diablobuilds.ru']
 

@@ -35,7 +35,7 @@ class StagingDatabaseSettings(object):
         databases = {}
         databases['default'] = DjangoDatabaseJeteeServiceConfigResolver(
             host=u'diablobuilds-postgresql',
-            protocol=u'postgresql_psycopg2'
+            engine=u'postgresql_psycopg2'
         ).render()
         return databases
 
@@ -46,6 +46,6 @@ class ProductionDatabaseSettings(object):
         databases = {}
         databases['default'] = DjangoDatabaseJeteeServiceConfigResolver(
             host=u'diablobuilds-postgresql',
-            protocol=u'postgresql_psycopg2'
+            engine=u'postgresql_psycopg2'
         ).render()
         return databases
