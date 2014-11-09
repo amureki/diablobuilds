@@ -8,9 +8,9 @@ Pillow
 -e hg+https://bitbucket.org/izi/django-admin-tools#egg=django_admin_tools
 django-configurations
 django-toolbelt
+-e git+git@bitbucket.org:WhackoJacko/jeteetools.git#egg=jeteetools
 
 -e git+https://bitbucket.org/rebranch/rebranch-shortcuts#egg=rebranch_shortcuts-dev
--e git+https://bitbucket.org/rebranch/rebranch-deployment-tools.git#egg=rebranch-deployment-tools
 git+git://github.com/comoga/django-constance#egg=django-constance
 redis==2.10.1
 

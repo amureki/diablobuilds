@@ -13,4 +13,4 @@ class ConstanceDevelopmentSettings(ConstanceBaseSettings):
 
 
 class ConstanceProductionSettings(ConstanceBaseSettings):
-    CONSTANCE_REDIS_CONNECTION = RedisJeteeServiceConfigResolver(host=u'mindgames-redis').render()
+    CONSTANCE_REDIS_CONNECTION = RedisJeteeServiceConfigResolver(host=u'diablobuilds-redis').render()
