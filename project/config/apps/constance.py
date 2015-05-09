@@ -1,5 +1,4 @@
 # encoding=utf8
-from jetee_tools.service_resolvers import RedisJeteeServiceConfigResolver
 
 
 class ConstanceBaseSettings(object):
@@ -12,5 +11,5 @@ class ConstanceDevelopmentSettings(ConstanceBaseSettings):
     CONSTANCE_REDIS_CONNECTION = 'redis://localhost:6379/0'
 
 
-class ConstanceProductionSettings(ConstanceBaseSettings):
-    CONSTANCE_REDIS_CONNECTION = RedisJeteeServiceConfigResolver(host=u'diablobuilds-redis').render()
+class ConstanceStagingSettings(ConstanceBaseSettings):
+    CONSTANCE_REDIS_CONNECTION = u'redis://diablobuilds-redis:6379/0'
