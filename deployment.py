@@ -16,7 +16,7 @@ class BaseConfiguration(AppConfiguration):
     def get_primary_service(self):
         app_service = PrimaryService(
             project=DjangoProject(
-                cvs_repo_url=u'git@bitbucket.org:amureki/diablobuilds.git',
+                cvs_repo_url=u'git@github.com:amureki/diablobuilds.git',
                 cvs_repo_branch=self.branch,
                 apt_packages=[u'libjpeg-dev', ],
                 web_process=UWSGIProcess(u'project/wsgi.py'),

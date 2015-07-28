@@ -1,15 +1,13 @@
 Django<1.7
-South
-psycopg2
-raven
-uWSGI
-gunicorn
-Pillow
+Pillow==2.8.1
+South==1.0.2
+psycopg2==2.6
+raven==5.3.1
+uWSGI==2.0.10
+gunicorn==19.3.0
 -e hg+https://bitbucket.org/izi/django-admin-tools#egg=django_admin_tools
-django-configurations
-django-toolbelt
-#-e git+git@bitbucket.org:WhackoJacko/jeteetools.git#egg=jeteetools
-jetee-tools==0.1.1
+django-configurations==0.8
+django-toolbelt==0.0.1
 
 -e git+https://bitbucket.org/rebranch/rebranch-shortcuts#egg=rebranch_shortcuts-dev
 git+git://github.com/comoga/django-constance#egg=django-constance
