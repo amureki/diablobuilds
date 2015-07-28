@@ -9,4 +9,5 @@
 .DS_Store
 project/media/*
 project/media/cache
+project/config/django/secrets.py
 node_modules/

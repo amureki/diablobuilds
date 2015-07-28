@@ -2,6 +2,7 @@
 import sys
 import os
 from configurations import Settings
+from django.core.exceptions import ImproperlyConfigured
 
 from config.django.database import DevelopmentDatabaseSettings, StagingDatabaseSettings
 from config.django.i18n import LocaleSettings
@@ -15,22 +16,25 @@ from config.apps.constance import ConstanceDevelopmentSettings, ConstanceStaging
 from config.apps.ckeditor import CKEditorSettings
 from config.apps.disqus import DisqusSettings
 
+try:
+    from config.django.secrets import SecretSettings
+except ImportError:
+    raise ImproperlyConfigured(u'config.django.secrets is improperly configured.')
+
 
 class BaseSettings(LocaleSettings, MediaSettings, MiddlewareSetings, LoggingSettings, EmailSettings, TemplateSettings,
-                   Settings, CKEditorSettings, DisqusSettings):
+                   CKEditorSettings, DisqusSettings,
+                   SecretSettings,
+                   Settings):
     PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
     sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
-    ADMINS = MANAGERS = (
-        ('amureki', 'fly.amureki@gmail.com'),
-    )
+    ADMINS = MANAGERS = []
 
     ALLOWED_HOSTS = [u'diablobuilds.ru', ]
     INTERNAL_IPS = ['127.0.0.1', ]
 
     SITE_ID = 1
-
-    SECRET_KEY = 'g-w$_bz2)*d=d$=1jr-v=3&xh%_9$#p06h@$37dft5so_-10!6'
 
     ROOT_URLCONF = 'project.urls'
 
